@@ -45,12 +45,34 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(body: LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth < 600) {
-          return const Text('mobile');
+          return const MobileView();
         } else {
           return const DesktopView();
         }
       },
     ));
+  }
+}
+
+class MobileView extends StatelessWidget {
+  const MobileView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: 6,
+      itemBuilder: (context, index) {
+        return Container(
+          alignment: Alignment.center,
+          height: 300,
+          margin: const EdgeInsets.symmetric(vertical: 10),
+          color: Colors.blueAccent,
+          child: Text('item$index'),
+        );
+      },
+    );
   }
 }
 
