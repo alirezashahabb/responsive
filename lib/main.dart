@@ -47,9 +47,56 @@ class MyHomePage extends StatelessWidget {
         if (constraints.maxWidth < 600) {
           return const Text('mobile');
         } else {
-          return const Text('desktop');
+          return const DesktopView();
         }
       },
     ));
+  }
+}
+
+class DesktopView extends StatelessWidget {
+  const DesktopView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+            flex: 2,
+            child: GridView.count(
+              crossAxisCount: 3,
+              children: List.generate(
+                6,
+                (index) {
+                  return Card(
+                    color: Colors.blueAccent,
+                    child: Center(
+                      child: Text('item $index'),
+                    ),
+                  );
+                },
+              ),
+            )),
+        Expanded(
+          flex: 1,
+          child: Container(
+            color: Colors.red,
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: const Column(
+              children: [
+                Text('ایتم1'),
+                Text('ایتم2'),
+                Text('ایتم3'),
+                Text('ایتم4'),
+                Text('ایتم5'),
+                Text('ایتم6'),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
