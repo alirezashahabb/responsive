@@ -42,15 +42,51 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: LayoutBuilder(
-      builder: (context, constraints) {
-        if (constraints.maxWidth < 600) {
-          return const MobileView();
-        } else {
-          return const DesktopView();
-        }
-      },
-    ));
+    final mainWith = MediaQuery.of(context).size.width;
+    return Scaffold(
+        appBar: (mainWith <= 600)
+            ? AppBar(
+                title: const Text('فروشگاه'),
+                centerTitle: true,
+              )
+            : null,
+        drawer: (mainWith <= 600)
+            ? Drawer(
+                child: ListView(
+                  children: const [
+                    ListTile(
+                      leading: Icon(Icons.shop),
+                      title: Text('ایتم اول'),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.shop),
+                      title: Text('ایتم اول'),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.shop),
+                      title: Text('ایتم اول'),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.shop),
+                      title: Text('ایتم اول'),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.shop),
+                      title: Text('ایتم اول'),
+                    ),
+                  ],
+                ),
+              )
+            : null,
+        body: LayoutBuilder(
+          builder: (context, constraints) {
+            if (constraints.maxWidth < 600) {
+              return const MobileView();
+            } else {
+              return const DesktopView();
+            }
+          },
+        ));
   }
 }
 
